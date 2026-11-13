@@ -4,7 +4,7 @@ import { findProduct } from "./catalog";
 export type CartLine = { id: string; qty: number };
 
 export const SHIPPING_FEE = 490;
-export const FREE_SHIPPING_FROM = 5000;
+export const FREE_SHIPPING_FROM = 50; // €50
 
 const promoCodes: Record<string, number> = {
   WELCOME10: 10,
