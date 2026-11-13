@@ -8,7 +8,9 @@ const key = (id: string) => `tostado-order-${id}`;
 export function saveOrder(order: Omit<Order, "id">) {
   const id = `TS-${Math.floor(1000 + Math.random() * 9000)}`;
   try {
-    sessionStorage.setItem(key(id), JSON.stringify({ ...order, id }));
+    // The total follows from the lines, so it isn't stored twice.
+    const { total: _total, ...rest } = order;
+    sessionStorage.setItem(key(id), JSON.stringify({ ...rest, id }));
   } catch {
     // Without storage the confirmation page just can't show details.
   }
