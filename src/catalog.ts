@@ -32,7 +32,7 @@ export const products = [
     id: "kettle",
     name: "Gooseneck Kettle",
     kind: "0.9 L, stovetop",
-    notes: "Slow, steady pour for V60",
+    notes: "Slow, steady pour for V60 and Chemex",
     price: 4500,
   },
   {
