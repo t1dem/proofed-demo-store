@@ -2,6 +2,10 @@ name: Proofed
 
 on:
   pull_request:
+  # "/proofed" in a PR comment checks that PR again (also one opened before Proofed was added);
+  # "/proofed <what to check>" has Kane check just that.
+  issue_comment:
+    types: [created]
 
 permissions:
   contents: write # clips go to the proofed-clips branch
@@ -9,19 +13,25 @@ permissions:
   issues: write
   statuses: write
 
-concurrency:
-  group: proofed-${{ github.event.pull_request.number }}
-  cancel-in-progress: true
-
 jobs:
   kane:
     name: Kane in Chrome
+    # Comments count only from people with write access: the run uses this repo's keys on the PR's code.
+    if: >-
+      github.event_name == 'pull_request' || (
+        github.event.issue.pull_request &&
+        contains(github.event.comment.body, '/proofed') &&
+        contains(fromJSON('["OWNER", "MEMBER", "COLLABORATOR"]'), github.event.comment.author_association)
+      )
     runs-on: ubuntu-latest
     timeout-minutes: 20
+    concurrency:
+      group: proofed-${{ github.event.pull_request.number || github.event.issue.number }}
+      cancel-in-progress: true
     steps:
       - uses: actions/checkout@v4
         with:
-          ref: ${{ github.event.pull_request.head.sha }}
+          ref: ${{ github.event.pull_request.head.sha || format('refs/pull/{0}/head', github.event.issue.number) }}
           fetch-depth: 0
 
       - uses: pnpm/action-setup@v4

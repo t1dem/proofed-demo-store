@@ -35,3 +35,6 @@ jobs:
           lt-username: ${{ secrets.LT_USERNAME }}
           lt-access-key: ${{ secrets.LT_ACCESS_KEY }}
           claude-code-oauth-token: ${{ secrets.CLAUDE_CODE_OAUTH_TOKEN }}
+          # Set per repo from the Proofed dashboard; empty means Haiku 5.5 at xhigh.
+          model: ${{ vars.PROOFED_MODEL }}
+          effort: ${{ vars.PROOFED_EFFORT }}
