@@ -17,7 +17,7 @@ export function saveOrder(order: Omit<Order, "id">) {
 
 export function loadOrder(id: string): Order | undefined {
   try {
-    const raw = localStorage.getItem(key(id));
+    const raw = sessionStorage.getItem(key(id));
     return raw ? JSON.parse(raw) : undefined;
   } catch {
     return undefined;
