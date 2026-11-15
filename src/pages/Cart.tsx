@@ -22,9 +22,11 @@ export function Cart() {
   }
 
   const apply = () => {
-    const ok = promoPercent(draft) > 0;
+    // The input only looks uppercase via CSS; normalize here so the lookup in pricing.ts can stay exact.
+    const entered = draft.trim().toUpperCase();
+    const ok = promoPercent(entered) > 0;
     setRejected(!ok);
-    cart.applyCode(ok ? draft : "");
+    cart.applyCode(ok ? entered : "");
   };
 
   return (
