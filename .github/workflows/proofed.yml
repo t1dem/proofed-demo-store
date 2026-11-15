@@ -14,6 +14,7 @@ permissions:
   pull-requests: write
   issues: write
   statuses: write
+  id-token: write # the dashboard follows the run as it goes, and the fix is pushed as the Proofed app
 
 jobs:
   proofed:
@@ -37,8 +38,8 @@ jobs:
     timeout-minutes: 40
     concurrency:
       group: proofed-${{ github.event.pull_request.number || github.event.issue.number }}
-      # A new push makes the running check stale; a comment waits for the run in progress.
-      cancel-in-progress: ${{ github.event_name == 'pull_request' }}
+      # A new push makes the running check stale, but not the push of Claude's fix: that run waits for the fix run.
+      cancel-in-progress: ${{ github.event_name == 'pull_request' && github.actor != 'proofed-by-kane[bot]' }}
     steps:
       - uses: pnpm/action-setup@v4
         with:
