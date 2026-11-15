@@ -22,7 +22,7 @@ export function Cart() {
   }
 
   // A quantity never drops below 1 from the stepper.
-  const step = (id: string, qty: number, by: number) => cart.setQty(id, Math.max(1, by));
+  const step = (id: string, qty: number, by: number) => cart.setQty(id, Math.max(1, qty + by));
 
   const apply = () => {
     const ok = promoPercent(draft) > 0;
