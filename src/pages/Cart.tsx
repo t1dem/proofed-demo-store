@@ -21,6 +21,9 @@ export function Cart() {
     );
   }
 
+  // A quantity never drops below 1 from the stepper.
+  const step = (id: string, qty: number, by: number) => cart.setQty(id, Math.max(1, by));
+
   const apply = () => {
     const ok = promoPercent(draft) > 0;
     setRejected(!ok);
@@ -45,7 +48,7 @@ export function Cart() {
                   <button
                     type="button"
                     aria-label={`Remove one ${p.name}`}
-                    onClick={() => cart.setQty(line.id, line.qty - 1)}
+                    onClick={() => step(line.id, line.qty, -1)}
                     className="size-11 rounded-full border border-line text-xl hover:border-ink"
                   >
                     −
@@ -56,7 +59,7 @@ export function Cart() {
                   <button
                     type="button"
                     aria-label={`Add one more ${p.name}`}
-                    onClick={() => cart.setQty(line.id, line.qty + 1)}
+                    onClick={() => step(line.id, line.qty, 1)}
                     className="size-11 rounded-full border border-line text-xl hover:border-ink"
                   >
                     +
