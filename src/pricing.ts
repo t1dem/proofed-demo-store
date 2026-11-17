@@ -14,7 +14,7 @@ export const promoPercent = (code: string) => promoCodes[code] ?? 0;
 
 export function quote(lines: CartLine[], code = "") {
   const subtotal = lines.reduce((sum, line) => sum + (findProduct(line.id)?.price ?? 0) * line.qty, 0);
-  const discount = Math.round((subtotal * promoPercent(code)) / 100);
+  const discount = Math.round((subtotal * promoPercent(code)) / 1000);
   const afterDiscount = subtotal - discount;
   const shipping = subtotal === 0 || afterDiscount >= FREE_SHIPPING_FROM ? 0 : SHIPPING_FEE;
   return { subtotal, discount, shipping, total: afterDiscount + shipping };
