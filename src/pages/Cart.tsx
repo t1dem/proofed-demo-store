@@ -22,9 +22,10 @@ export function Cart() {
   }
 
   const apply = () => {
-    const ok = promoPercent(draft) > 0;
+    const canonical = draft.trim().toUpperCase();
+    const ok = promoPercent(canonical) > 0;
     setRejected(!ok);
-    cart.applyCode(ok ? draft : "");
+    cart.applyCode(ok ? canonical : "");
   };
 
   return (

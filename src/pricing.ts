@@ -10,7 +10,7 @@ const promoCodes: Record<string, number> = {
   WELCOME10: 10,
 };
 
-export const promoPercent = (code: string) => promoCodes[code.trim().toUpperCase()] ?? 0;
+export const promoPercent = (code: string) => promoCodes[code] ?? 0;
 
 export function quote(lines: CartLine[], code = "") {
   const subtotal = lines.reduce((sum, line) => sum + (findProduct(line.id)?.price ?? 0) * line.qty, 0);
