@@ -1,8 +1,9 @@
 ---
 name: Place an order
-paths: [src/pages/Checkout.tsx, src/pages/Order.tsx, src/orders.ts, src/pricing.ts, src/App.tsx]
+paths: [src/pages/Cart.tsx, src/pages/Summary.tsx, src/pages/Checkout.tsx, src/pages/Order.tsx, src/orders.ts, src/pricing.ts, src/App.tsx]
 url: /
 ---
-Add Colombia Huila to the bag, open the bag and go to checkout.
-Fill in name Ada Lovelace, email ada@example.com, street 12 Rua Augusta, city Lisbon, and place the order.
-Check that the confirmation page says the order is in and that €17.90 was charged. That is the bag total (€13.00 for the coffee plus €4.90 shipping); the confirmation page only shows the total. Any other charged amount means the shop charged the wrong total.
+Add Colombia Huila to the bag and open the bag.
+Check that shipping is €4.90 and the total is €17.90.
+Go to checkout, fill in name Ada Lovelace, email ada@example.com, street 12 Rua Augusta, city Lisbon, and place the order.
+Check that the confirmation page says the order is in and that €17.90 was charged.
