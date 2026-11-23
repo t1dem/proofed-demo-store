@@ -1,7 +1,8 @@
 // No backend in the demo: orders live in this browser only.
 import type { CartLine } from "./pricing";
 
-export type Order = { id: string; email: string; total: number; lines: CartLine[] };
+// Orders saved before shipping was stored have no shipping, and their total already includes it.
+export type Order = { id: string; email: string; total: number; shipping?: number; lines: CartLine[] };
 
 const key = (id: string) => `tostado-order-${id}`;
 

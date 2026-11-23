@@ -33,7 +33,7 @@ export function Checkout() {
         e.preventDefault();
         const data = new FormData(e.currentTarget);
         // The confirmation page adds shipping, so the saved total is the goods alone.
-        const id = saveOrder({ email: String(data.get("email")), total: q.total - q.shipping, lines });
+        const id = saveOrder({ email: String(data.get("email")), total: q.total - q.shipping, shipping: q.shipping, lines });
         cart.clear();
         navigate(`/order/${id}`);
       }}
