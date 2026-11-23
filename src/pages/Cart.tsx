@@ -22,9 +22,10 @@ export function Cart() {
   }
 
   const apply = () => {
-    const ok = promoPercent(draft) > 0;
+    const normalized = draft.trim().toUpperCase();
+    const ok = promoPercent(normalized) > 0;
     setRejected(!ok);
-    cart.applyCode(ok ? draft : "");
+    cart.applyCode(ok ? normalized : "");
   };
 
   return (
